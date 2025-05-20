@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>مکان‌یاب</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; background: #000; color: white; padding: 20px; }
+    #map { width: 100%; height: 400px; margin-top: 20px; border: 2px solid red; border-radius: 10px; }
+  </style>
+  <script>
+    function getLocation() {
+      navigator.geolocation.getCurrentPosition(position => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        document.getElementById("map").src = `https://maps.google.com/maps?q=${lat},${lon}&z=15&output=embed`;
+        navigator.vibrate([200, 100, 200]);
+      }, error => {
+        alert("اجازه مکان داده نشد.");
+      });
+    }
+  </script>
+</head>
+<body onload="getLocation()">
+  <h2>مکان شما روی نقشه:</h2>
+  <iframe id="map" frameborder="0" allowfullscreen></iframe>
+</body>
+</html>
